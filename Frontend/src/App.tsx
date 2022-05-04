@@ -1,16 +1,20 @@
-import './App.scss';
-import {BrowserRouter as Router , Route, Routes} from 'react-router-dom';
-import Home from './components/Home/Home';
+import "./App.scss";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { MoviesPage } from "./pages/MoviesPage/MoviesPage";
+import { MoviesStore } from "./store/MovieStore";
 
 function App() {
   return (
     <Router>
-        <div className="App">
+      <div className='App'>
         <Routes>
-          <Route path={"/"} element={<Home/>}/>
-        {/* <Route path={"/movie/:id"}></Route> */}
+          <Route
+            path={"/"}
+            element={<MoviesPage moviesStore={MoviesStore} />}
+          />
+          {/* <Route path={"/movie/:id"}></Route> */}
         </Routes>
-    </div>
+      </div>
     </Router>
   );
 }
