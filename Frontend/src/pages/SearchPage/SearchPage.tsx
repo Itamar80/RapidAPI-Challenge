@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "./movies.scss";
+import React from "react";
+import "./search-page.scss";
 import { Form } from "../../components/Form/Form";
 import { MoviesStoreImp } from "../../store/MovieStore";
 import { MoviesList } from "../../components/MoviesList/MoviesList";
@@ -8,7 +8,7 @@ interface MovieListProps {
   moviesStore: MoviesStoreImp;
 }
 
-const MoviesPage: React.FC<MovieListProps> = ({ moviesStore }) => {
+const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
   const getMoviesBySearchTerm = (searchTerm: string): void => {
     moviesStore.getMovies(searchTerm);
   };
@@ -26,4 +26,4 @@ const MoviesPage: React.FC<MovieListProps> = ({ moviesStore }) => {
   );
 };
 
-export default observer(MoviesPage);
+export default observer(SearchPage);
