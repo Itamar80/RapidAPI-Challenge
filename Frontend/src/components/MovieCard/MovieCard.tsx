@@ -13,10 +13,12 @@ export const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   return (
     <div
-      className={"movies-list-container"}
+      className={"card-container"}
       onClick={() => goToMovieDetails(movie.id)}
     >
+      <img src={movie.poster} />
       <div>{movie.title}</div>
+      <div>{movie.year}</div>
     </div>
   );
 };

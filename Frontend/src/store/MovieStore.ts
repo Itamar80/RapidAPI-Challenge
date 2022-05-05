@@ -1,3 +1,4 @@
+import { DetailedMovie } from "../interfaces/Movie";
 import { observable, makeObservable, action, runInAction } from "mobx";
 import {
   GetMovieResponse,
@@ -8,7 +9,7 @@ import { getMoviesBySearchTerm, getMovie } from "../services/MoviesService";
 
 export class MoviesStoreImp {
   movies: Movie[] = [];
-  selectedMovie: Movie | null = null;
+  selectedMovie: DetailedMovie | null = null;
   isFetching: boolean = false;
   errorMessage: string = "";
   constructor() {
@@ -18,11 +19,10 @@ export class MoviesStoreImp {
       selectedMovie: observable,
       errorMessage: observable,
       getMovies: action,
-      getSpecificMovie: action,
     });
   }
 
-  async getMovies(searchTerm: string): Promise<void> {
+  public async getMovies(searchTerm: string): Promise<void> {
     try {
       const data: GetMoviesResponse = await getMoviesBySearchTerm(searchTerm);
       if (data.movies.length) {
@@ -38,46 +38,31 @@ export class MoviesStoreImp {
     }
   }
 
-  async getMovie(id: string): Promise<void> {
+  public async getMovie(id: string): Promise<void> {
     try {
-      if (this.isFetching) {
-        console.log("Currently fetching");
-        return;
-      }
-      const movie: Movie | null =
-        this.movies.find((movie) => id === movie.id) ||
-        (await this.getSpecificMovie(id));
-      this.selectedMovie = movie;
+      if (this.isFetching) return;
+
+      this.toggleIsFetching();
+      const data: GetMovieResponse = await getMovie(id);
+      console.log("data", data);
+
+      data && this.toggleIsFetching();
+      this.selectedMovie = data.movie;
       this.resetErrorMessage();
     } catch (err) {
       console.log("Getting specific movie failed", err);
     }
   }
 
-  async getSpecificMovie(id: string): Promise<Movie | null> {
-    this.toggleIsFetching();
-    try {
-      const data: GetMovieResponse = await getMovie(id);
-      data && this.toggleIsFetching();
-      this.resetErrorMessage();
-      return data.movie;
-    } catch (err) {
-      console.log("Get movie by id failed", err);
-      this.selectedMovie = null;
-      this.errorMessage = "Get specific movie failed";
-      return null;
-    }
-  }
-
-  toggleIsFetching(): void {
+  private toggleIsFetching(): void {
     this.isFetching = !this.isFetching;
   }
 
-  resetErrorMessage(): void {
+  private resetErrorMessage(): void {
     this.errorMessage = "";
   }
 
-  resetMovies(): void {
+  private resetMovies(): void {
     this.movies = [];
   }
 }

@@ -12,6 +12,6 @@ export const getMoviesBySearchTerm = async (
 
 export const getMovie = async (id: string): Promise<GetMovieResponse> => {
   const body = { id };
-  const result: AxiosResponse = await axios.post(`${DOMAIN}${id}`, body);
+  const result: AxiosResponse = await axios.post(`${DOMAIN}/${id}`, body);
   return result.data;
 };
