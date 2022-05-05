@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { MoviesStoreImp } from "../../store/MovieStore";
 import "./Form.scss";
 
 interface FormProps {
-  //   searchValue: string;
   getMoviesBySearchTerm: (searchTerm: string) => void;
+  moviesStore: MoviesStoreImp;
 }
 
-export const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm }) => {
+export const Form: React.FC<FormProps> = ({
+  getMoviesBySearchTerm,
+  moviesStore,
+}) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
-
+  const isButtonDisabled = searchTerm === "" && !moviesStore.isFetching;
   return (
     <div className={"form-container"}>
       <input
@@ -16,7 +20,12 @@ export const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm }) => {
         onChange={(event) => setSearchTerm(event.target.value)}
         value={searchTerm}
       />
-      <button onClick={() => getMoviesBySearchTerm(searchTerm)}>submit</button>
+      <button
+        disabled={isButtonDisabled}
+        onClick={() => getMoviesBySearchTerm(searchTerm)}
+      >
+        submit
+      </button>
     </div>
   );
 };

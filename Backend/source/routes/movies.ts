@@ -3,9 +3,6 @@ import controller from "../controllers/movies";
 const router = express.Router();
 
 router.post("/movies", controller.getMoviesBySearchTerm);
-// router.get('/posts/:id', controller.getPost);
-// router.put('/posts/:id', controller.updatePost);
-// router.delete('/posts/:id', controller.deletePost);
-// router.post('/posts', controller.addPost);
+router.post("/movies/:id", controller.getMovieById);
 
 export = router;
