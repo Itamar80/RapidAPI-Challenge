@@ -12,9 +12,8 @@ interface MoviesListProps {
 export const MoviesList: React.FC<MoviesListProps> = (props) => {
   const navigate = useNavigate();
   const { movies } = props;
-  const goToMovieDetails = (id: string) => {
+  const goToMovieDetails = (id: string): void => {
     navigate("/" + id, { state: id });
-    return undefined;
   };
 
   return (

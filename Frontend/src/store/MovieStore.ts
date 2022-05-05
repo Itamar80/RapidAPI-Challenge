@@ -32,7 +32,6 @@ export class MoviesStoreImp {
   }
 
   async getMovie(id: string): Promise<void> {
-    console.log("isFetching", this.isFetching);
     try {
       if (this.isFetching) {
         console.log("Currently fetching");
@@ -63,11 +62,11 @@ export class MoviesStoreImp {
     }
   }
 
-  toggleIsFetching() {
+  toggleIsFetching(): void {
     this.isFetching = !this.isFetching;
   }
 
-  resetErrorMessage() {
+  resetErrorMessage(): void {
     this.errorMessage = "";
   }
 }

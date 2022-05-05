@@ -4,7 +4,7 @@ import { Movie } from "../../interfaces/Movie";
 
 interface MovieCardProps {
   movie: Movie;
-  goToMovieDetails: (id: string) => undefined;
+  goToMovieDetails: (id: string) => void;
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({
