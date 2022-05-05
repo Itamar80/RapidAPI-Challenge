@@ -41,21 +41,22 @@ export class MoviesStoreImp {
   public async getMovie(id: string): Promise<void> {
     try {
       if (this.isFetching) return;
-
       this.toggleIsFetching();
       const data: GetMovieResponse = await getMovie(id);
-      console.log("data", data);
-
-      data && this.toggleIsFetching();
-      this.selectedMovie = data.movie;
-      this.resetErrorMessage();
+      runInAction(() => {
+        data && this.toggleIsFetching();
+        this.selectedMovie = data.movie;
+        this.resetErrorMessage();
+      });
     } catch (err) {
       console.log("Getting specific movie failed", err);
     }
   }
 
   private toggleIsFetching(): void {
-    this.isFetching = !this.isFetching;
+    runInAction(() => {
+      this.isFetching = !this.isFetching;
+    });
   }
 
   private resetErrorMessage(): void {

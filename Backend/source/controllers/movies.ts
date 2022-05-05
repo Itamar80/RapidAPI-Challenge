@@ -85,7 +85,7 @@ const getMovieById = async (
     );
     console.log("result,data", result.data);
 
-    let movie: convetedMovie;
+    let movie: convetedMovie | null = null;
     if (result.data) {
       movie = convertToDetailedMovie(result.data);
       return res.status(200).json({

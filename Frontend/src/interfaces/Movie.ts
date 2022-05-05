@@ -16,9 +16,7 @@ interface Rating {
 export interface DetailedMovie {
   actors: string;
   awards: string;
-  boxOffice: string;
   country: string;
-  DVD: string;
   director: string;
   genre: string;
   language: string;
@@ -29,10 +27,8 @@ export interface DetailedMovie {
   rated: string;
   ratings: Rating[];
   released: string;
-  response: string;
   runtime: string;
   title: string;
-  type: string;
   website: string;
   writer: string;
   year: string;
