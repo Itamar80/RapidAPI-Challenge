@@ -1,4 +1,4 @@
-import { observable, makeObservable, action, toJS } from "mobx";
+import { observable, makeObservable, action } from "mobx";
 import { GetMovieResponse, Movie, MoviesResponse } from "../interfaces/Movie";
 import { getMoviesBySearchTerm, getMovie } from "../services/MoviesService";
 
@@ -25,8 +25,7 @@ export class MoviesStoreImp {
       this.resetErrorMessage();
     } catch (err) {
       this.errorMessage = "No movies with the word: " + searchTerm;
-      console.log("searchterm", this.errorMessage);
-      this.movies = [];
+      this.resetMovies();
       console.log("Getting movies failed", err);
     }
   }
@@ -37,7 +36,7 @@ export class MoviesStoreImp {
         console.log("Currently fetching");
         return;
       }
-      const movie =
+      const movie: Movie | null =
         this.movies.find((movie) => id === movie.id) ||
         (await this.getSpecificMovie(id));
       this.selectedMovie = movie;
@@ -68,6 +67,10 @@ export class MoviesStoreImp {
 
   resetErrorMessage(): void {
     this.errorMessage = "";
+  }
+
+  resetMovies(): void {
+    this.movies = [];
   }
 }
 

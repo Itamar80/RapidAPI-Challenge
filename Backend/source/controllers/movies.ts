@@ -60,16 +60,15 @@ const getMoviesBySearchTerm = async (
     );
     console.log("result", result.data.Search);
     let movies: convetedMovie[] = [];
-    if (result?.data) {
+    if (result?.data.Search.length) {
       movies = convertMovies(result.data.Search);
     }
     return res.status(200).json({
       movies,
     });
   } catch (err) {
-    console.log("Error in getting movies", err);
     return res.status(500).json({
-      message: err,
+      message: "Error in getting movies:" + err,
     });
   }
 };

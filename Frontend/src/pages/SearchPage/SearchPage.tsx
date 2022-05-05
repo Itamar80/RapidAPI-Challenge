@@ -4,7 +4,7 @@ import { Form } from "../../components/Form/Form";
 import { MoviesStoreImp } from "../../store/MovieStore";
 import { MoviesList } from "../../components/MoviesList/MoviesList";
 import { observer } from "mobx-react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 interface MovieListProps {
   moviesStore: MoviesStoreImp;
@@ -16,12 +16,17 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
     moviesStore.getMovies(searchTerm);
     setSearchParams({ q: searchTerm });
   };
-  // console.log("moviesStore.movies", moviesStore.movies);
+  const getInput = (str: string) => {
+    return str.substring(str.indexOf("=") + 1);
+  };
+  const queryText = getInput(useLocation().search);
+
   return (
     <div className={"movies-list-container"}>
       <Form
         getMoviesBySearchTerm={getMoviesBySearchTerm}
         moviesStore={moviesStore}
+        inputValue={queryText}
       />
       <p>{moviesStore.errorMessage}</p>
       <MoviesList movies={moviesStore.movies} />
