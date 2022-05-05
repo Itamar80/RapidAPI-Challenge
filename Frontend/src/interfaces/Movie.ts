@@ -5,7 +5,7 @@ export interface Movie {
   poster: string;
 }
 
-export interface MoviesResponse {
+export interface GetMoviesResponse {
   movies: Movie[];
 }
 export interface GetMovieResponse {

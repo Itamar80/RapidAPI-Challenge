@@ -1,5 +1,9 @@
-import { observable, makeObservable, action } from "mobx";
-import { GetMovieResponse, Movie, MoviesResponse } from "../interfaces/Movie";
+import { observable, makeObservable, action, runInAction } from "mobx";
+import {
+  GetMovieResponse,
+  Movie,
+  GetMoviesResponse,
+} from "../interfaces/Movie";
 import { getMoviesBySearchTerm, getMovie } from "../services/MoviesService";
 
 export class MoviesStoreImp {
@@ -20,9 +24,13 @@ export class MoviesStoreImp {
 
   async getMovies(searchTerm: string): Promise<void> {
     try {
-      const data: MoviesResponse = await getMoviesBySearchTerm(searchTerm);
-      if (data.movies.length) this.movies = data.movies;
-      this.resetErrorMessage();
+      const data: GetMoviesResponse = await getMoviesBySearchTerm(searchTerm);
+      if (data.movies.length) {
+        runInAction(() => {
+          this.movies = data.movies;
+          this.resetErrorMessage();
+        });
+      }
     } catch (err) {
       this.errorMessage = "No movies with the word: " + searchTerm;
       this.resetMovies();
