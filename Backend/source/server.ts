@@ -2,9 +2,7 @@ import http from "http";
 import express, { Express } from "express";
 import morgan from "morgan";
 import routes, { route } from "./routes/movies";
-var cors = require("cors");
-
-// import cors from "cors";
+import cors from "cors";
 
 const router: Express = express();
 
