@@ -1,18 +1,14 @@
-import { DetailedMovie } from "../interfaces/Movie";
-import { observable, makeObservable, action, runInAction } from "mobx";
-import {
-  GetMovieResponse,
-  Movie,
-  GetMoviesResponse,
-} from "../interfaces/Movie";
-import { getMoviesBySearchTerm, getMovie } from "../services/MoviesService";
-import { Errors } from "../constants/constants";
+import { DetailedMovie } from '../interfaces/Movie';
+import { observable, makeObservable, action, runInAction } from 'mobx';
+import { GetMovieResponse, Movie, GetMoviesResponse } from '../interfaces/Movie';
+import { getMoviesBySearchTerm, getMovie } from '../services/MoviesService';
+import { Errors } from '../constants/constants';
 
 export class MoviesStoreImp {
   movies: Movie[] = [];
   selectedMovie: DetailedMovie | null = null;
   isFetching: boolean = false;
-  errorMessage: string = "";
+  errorMessage: string = '';
   constructor() {
     makeObservable(this, {
       isFetching: observable,
@@ -35,7 +31,6 @@ export class MoviesStoreImp {
     } catch (err) {
       this.changeErrorMessage(Errors.NO_MOVIES_WITH_SEARCHTERM + searchTerm);
       this.resetMovies();
-      console.log(Errors.GETTING_MOVIES_FAILER, err);
     }
   }
 
@@ -57,7 +52,6 @@ export class MoviesStoreImp {
       });
     } catch (err) {
       this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
-      console.log(Errors.GET_SPECIFIC_MOVIE_FAILED, err);
     }
   }
 
@@ -68,7 +62,7 @@ export class MoviesStoreImp {
   }
 
   private resetErrorMessage(): void {
-    this.errorMessage = "";
+    this.errorMessage = '';
   }
 
   private changeErrorMessage(str: string) {

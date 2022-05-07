@@ -40,8 +40,11 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
   return (
     <div className={'movie-details-container'}>
       <nav className={'nav-bar'}>
-        <img alt='back' className={'go-back-button'} src={BackIcon} onClick={() => navigate(-1)} />
-        <img className='rapidapi-logo' src={RapidApiLogo} />
+        <button className={'go-back-button'} onClick={() => navigate(-1)}>
+          <img alt='back' src={BackIcon} />
+          <span>Go back</span>
+        </button>
+        <img className='rapidapi-logo' src={RapidApiLogo} onClick={() => navigate(-1)} />
       </nav>
       {errorMessage !== '' && errorMessage}
       {isFetching || !selectedMovie ? (

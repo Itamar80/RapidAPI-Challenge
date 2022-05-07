@@ -4,18 +4,39 @@
     top: 0%;
   }
 }
+@keyframes form-move-down {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 50%;
+  }
+}
 
-@keyframes item-visibility {
+@keyframes item-visibility-visible {
   100% {
     left: 2rem;
   }
 }
 
-.item-visibility {
-  animation: item-visibility 1s both;
+@keyframes item-visibility-hidden {
+  100% {
+    left: -9rem;
+  }
+}
+
+.item-visibility-visible {
+  animation: item-visibility-visible 1s both;
+}
+.item-visibility-hidden {
+  animation: item-visibility-hidden 1s both;
 }
 
 .form-move-up {
   animation: form-move-up 1s both;
   width: 100%;
+}
+
+.form-move-down {
+  animation: form-move-down 1s both;
 }

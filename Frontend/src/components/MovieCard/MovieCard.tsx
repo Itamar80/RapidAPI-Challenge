@@ -13,8 +13,9 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, goToMovieDetails })
     <div className={'card-container'} onClick={() => goToMovieDetails(movie.id)}>
       <img alt='poster' src={movie.poster} />
       <div className={'card-data'}>
-        <div>{customTitle}</div>
-        <div>({movie.year})</div>
+        <div>
+          {customTitle} ({movie.year})
+        </div>
       </div>
     </div>
   );

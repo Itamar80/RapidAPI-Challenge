@@ -4,10 +4,26 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-
-  .go-back-button {
-    width: 20px;
+  .rapidapi-logo {
     cursor: pointer;
+  }
+  .go-back-button {
+    width: 7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    color: #1f222e;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    img {
+      width: 20px;
+    }
+    span {
+      font-size: 1rem;
+    }
   }
 }
 .detailed-movie {

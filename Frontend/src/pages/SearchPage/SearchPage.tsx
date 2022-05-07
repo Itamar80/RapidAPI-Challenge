@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './search-page.scss';
-import { Form } from '../../components/Form/Form';
+import '../../styles/animations.scss';
+import Form from '../../components/Form/Form';
 import { MoviesStoreImp } from '../../store/MovieStore';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { observer } from 'mobx-react';
@@ -20,20 +21,22 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
     moviesStore.getMovies(searchTerm);
   };
 
-  const queryText = getValueFromParams(search, '=');
+  const queryText: string = getValueFromParams(search, '=');
 
   useEffect(() => {
     if (moviesStore.movies.length) {
       setTimeout(() => {
         setMovies(moviesStore.movies);
       }, 1000);
+    } else {
+      setMovies([]);
     }
   }, [moviesStore.movies]);
 
   return (
-    <div className={'movies-list-container'}>
+    <div className={'search-page-container'}>
       <Form getMoviesBySearchTerm={getMoviesBySearchTerm} moviesStore={moviesStore} inputValue={queryText} />
-      {/* <p>{moviesStore.errorMessage}</p>\ */}
+      <div className={`error`}>{moviesStore.errorMessage}</div>
       <MoviesList movies={movies} />
     </div>
   );

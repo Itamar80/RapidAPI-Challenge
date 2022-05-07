@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MoviesStoreImp } from '../../store/MovieStore';
 import './Form.scss';
 import '../../styles/animations.scss';
@@ -10,13 +10,13 @@ interface FormProps {
   inputValue: string;
 }
 
-export const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, inputValue }) => {
+const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, inputValue }) => {
   const [searchTerm, setSearchTerm] = useState<string>(inputValue || '');
   const isButtonDisabled = searchTerm === '' && !moviesStore.isFetching;
   const disabledClass = isButtonDisabled ? 'disabled' : '';
   const isMoviesInStore = !!moviesStore.movies.length;
-  const formAnimtaionClass = isMoviesInStore ? 'form-move-up' : '';
-  const logoAnimtaionClass = isMoviesInStore ? 'item-visibility' : '';
+  const formAnimtaionClass = isMoviesInStore ? 'form-move-up' : 'form-move-down';
+  const logoAnimtaionClass = isMoviesInStore ? 'item-visibility-visible' : 'item-visibility-hidden';
 
   return (
     <div className={`form-container ${formAnimtaionClass}`}>
@@ -28,3 +28,5 @@ export const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, 
     </div>
   );
 };
+
+export default Form;
