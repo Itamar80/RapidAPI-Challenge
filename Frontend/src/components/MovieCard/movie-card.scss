@@ -1,4 +1,31 @@
 .card-container {
-  background-color: grey;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  max-width: 280px;
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 2px 4px 6px 0 #d7d4d44d;
+  }
+
+  img {
+    border-radius: 8px 8px 0px 0px;
+    max-width: 280px;
+    max-height: 380px;
+  }
+
+  .card-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    :nth-child(1) {
+      margin-right: 5px;
+    }
+  }
 }

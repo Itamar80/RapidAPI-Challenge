@@ -1,4 +1,106 @@
-.go-back-button {
-  width: 20px;
-  cursor: pointer;
+.nav-bar {
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .go-back-button {
+    width: 20px;
+    cursor: pointer;
+  }
+}
+.detailed-movie {
+  margin-top: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .movie-header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .movie-name-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .movie-name {
+        margin-bottom: 0.3rem;
+        font-size: 3rem;
+      }
+
+      .movie-info {
+        span {
+          color: rgb(151, 151, 151);
+        }
+        span:before {
+          display: inline-block;
+          margin: 0 0.2rem 0.2rem;
+          content: ' *';
+        }
+      }
+    }
+
+    .ratings-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 1rem;
+
+        :first-child {
+          font-size: 1.5rem;
+        }
+        img {
+          width: 15px;
+          margin-left: 5px;
+          transform: translateY(2px);
+        }
+      }
+    }
+  }
+
+  .poster-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-top: 1.2rem;
+    img {
+      margin-right: 1.5rem;
+    }
+    .data-container {
+      .genres-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+        .genre {
+          border: 1px solid white;
+          border-radius: 1rem;
+          padding: 2px 7px;
+        }
+
+        div:not(:first-child) {
+          margin: 0 5px;
+        }
+      }
+      p {
+        max-width: 60ch;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 1rem;
+
+        span {
+          font-weight: bold;
+          font-size: 1.1rem;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 }

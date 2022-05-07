@@ -9,13 +9,13 @@ export interface Movie {
   Type: string;
   Poster: string;
 }
-export interface convetedMovie {
+export interface ParsedMovie {
   title: string;
   year: string;
   poster: string;
   id: string;
 }
-export interface ConvertedDetailedMovie {
+export interface ParsedDetailedMovie {
   title: string;
   year: string;
   poster: string;

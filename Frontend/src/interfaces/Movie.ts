@@ -5,6 +5,13 @@ export interface Movie {
   poster: string;
 }
 
+export type SystemErrors = {
+  NO_MOVIES_WITH_SEARCHTERM: string;
+  GETTING_MOVIES_FAILER: string;
+  NO_MOVIE_WITH_GIVEN_ID: string;
+  GET_SPECIFIC_MOVIE_FAILED: string;
+};
+
 export interface GetMoviesResponse {
   movies: Movie[];
 }

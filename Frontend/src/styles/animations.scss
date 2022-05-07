@@ -1,0 +1,21 @@
+@keyframes form-move-up {
+  100% {
+    background-color: white;
+    top: 0%;
+  }
+}
+
+@keyframes item-visibility {
+  100% {
+    left: 2rem;
+  }
+}
+
+.item-visibility {
+  animation: item-visibility 1s both;
+}
+
+.form-move-up {
+  animation: form-move-up 1s both;
+  width: 100%;
+}

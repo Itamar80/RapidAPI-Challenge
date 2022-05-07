@@ -1,35 +1,40 @@
-import React, { useEffect } from "react";
-import "./search-page.scss";
-import { Form } from "../../components/Form/Form";
-import { MoviesStoreImp } from "../../store/MovieStore";
-import { MoviesList } from "../../components/MoviesList/MoviesList";
-import { observer } from "mobx-react";
-import { useSearchParams, useLocation } from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
+import './search-page.scss';
+import { Form } from '../../components/Form/Form';
+import { MoviesStoreImp } from '../../store/MovieStore';
+import { MoviesList } from '../../components/MoviesList/MoviesList';
+import { observer } from 'mobx-react';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import { getValueFromParams } from '../../helpers/utils';
+import { Movie } from '../../interfaces/Movie';
 interface MovieListProps {
   moviesStore: MoviesStoreImp;
 }
 
 const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { search } = useLocation();
   const getMoviesBySearchTerm = (searchTerm: string): void => {
-    moviesStore.getMovies(searchTerm);
     setSearchParams({ q: searchTerm });
+    moviesStore.getMovies(searchTerm);
   };
-  const getInput = (str: string) => {
-    return str.substring(str.indexOf("=") + 1);
-  };
-  const queryText = getInput(useLocation().search);
+
+  const queryText = getValueFromParams(search, '=');
+
+  useEffect(() => {
+    if (moviesStore.movies.length) {
+      setTimeout(() => {
+        setMovies(moviesStore.movies);
+      }, 1000);
+    }
+  }, [moviesStore.movies]);
 
   return (
-    <div className={"movies-list-container"}>
-      <Form
-        getMoviesBySearchTerm={getMoviesBySearchTerm}
-        moviesStore={moviesStore}
-        inputValue={queryText}
-      />
-      <p>{moviesStore.errorMessage}</p>
-      <MoviesList movies={moviesStore.movies} />
+    <div className={'movies-list-container'}>
+      <Form getMoviesBySearchTerm={getMoviesBySearchTerm} moviesStore={moviesStore} inputValue={queryText} />
+      {/* <p>{moviesStore.errorMessage}</p>\ */}
+      <MoviesList movies={movies} />
     </div>
   );
 };

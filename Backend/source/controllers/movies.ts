@@ -1,99 +1,51 @@
-import { API_KEY } from "../consts/consts";
-import { Request, Response, NextFunction } from "express";
-import axios, { AxiosResponse } from "axios";
-import {
-  Movie,
-  convetedMovie,
-  ConvertedDetailedMovie,
-  DetailedMovie,
-} from "../interfaces/movie.interfaces";
+import axios, { AxiosResponse } from 'axios';
+import { MOVIES_ENDPOINT } from '../consts/consts';
+import { Request, Response, NextFunction } from 'express';
+import { parseMovies, parseToDetailedMovie } from '../parsers/movies';
 
-const convertMovies = (movies: Movie[]): convetedMovie[] => {
-  return movies.map((movie: Movie) => {
-    return {
-      title: movie.Title,
-      year: movie.Year,
-      poster: movie.Poster,
-      id: movie.imdbID,
-    };
-  });
-};
-
-const convertToDetailedMovie = (
-  movie: DetailedMovie
-): ConvertedDetailedMovie => {
-  return {
-    title: movie.Title,
-    year: movie.Year,
-    poster: movie.Poster,
-    id: movie.imdbID,
-    actors: movie.Actors,
-    awards: movie.Awards,
-    country: movie.Country,
-    director: movie.Director,
-    genre: movie.Genre,
-    language: movie.Language,
-    metaScore: movie.Metascore,
-    plot: movie.Plot,
-    production: movie.Production,
-    rated: movie.Rated,
-    ratings: movie.Ratings,
-    released: movie.Released,
-    runtime: movie.Runtime,
-    website: movie.Website,
-    writer: movie.Writer,
-    imdbRating: movie.imdbRating,
-    imdbVotes: movie.imdbVotes,
-  };
-};
-
-const getMoviesBySearchTerm = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { searchTerm } = req.body;
-
+export const getMoviesBySearchTerm = async (req: Request, res: Response, next: NextFunction) => {
+  const { q } = req.params;
   try {
-    let result: AxiosResponse = await axios.get(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchTerm}`
-    );
-    console.log("result", result.data.Search);
-    let movies: convetedMovie[] = [];
-    if (result?.data.Search.length) {
-      movies = convertMovies(result.data.Search);
+    let result: AxiosResponse = await axios.get(`${MOVIES_ENDPOINT}&s=${q}`);
+    let error = result.data.Error;
+    let search = result.data.Search;
+
+    if (error) {
+      res.status(500).json({
+        message: 'Error in getting movies: ' + result.data.Error,
+      });
+    } else {
+      return res.status(200).json({
+        movies: parseMovies(search),
+        message: 'success',
+      });
     }
-    return res.status(200).json({
-      movies,
-    });
   } catch (err) {
     return res.status(500).json({
-      message: "Error in getting movies:" + err,
+      message: 'Error in getting movies: ' + err,
     });
   }
 };
 
-const getMovieById = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { id } = req.body;
+export const getMovieById = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
   try {
-    let result: AxiosResponse = await axios.get(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
-    );
-    console.log("result,data", result.data);
+    let result: AxiosResponse = await axios.get(`${MOVIES_ENDPOINT}&i=${id}`);
+    let error = result.data.Error || (typeof result.data === 'string' && result.data.includes('Error'));
 
-    let movie: convetedMovie | null = null;
-    if (result.data) {
-      movie = convertToDetailedMovie(result.data);
-      return res.status(200).json({
-        movie,
+    if (error) {
+      return res.status(500).json({
+        movie: null,
+        message: result.data.Error || result.data,
       });
     }
+
+    return res.status(200).json({
+      movie: parseToDetailedMovie(result.data),
+      message: 'success',
+    });
   } catch (err) {
-    console.log("Error getting movie by id", err);
+    console.log('Error getting movie by id', err);
     return res.status(500).json({
       message: err,
     });

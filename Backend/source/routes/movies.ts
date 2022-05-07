@@ -1,8 +1,8 @@
-import express from "express";
-import controller from "../controllers/movies";
+import express from 'express';
+import { getMoviesBySearchTerm, getMovieById } from '../controllers/movies';
 const router = express.Router();
 
-router.post("/movies", controller.getMoviesBySearchTerm);
-router.post("/movies/:id", controller.getMovieById);
+router.get('/movies/:q', getMoviesBySearchTerm);
+router.get('/movie/:id', getMovieById);
 
 export = router;

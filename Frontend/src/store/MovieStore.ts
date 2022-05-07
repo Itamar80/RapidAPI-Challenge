@@ -6,6 +6,7 @@ import {
   GetMoviesResponse,
 } from "../interfaces/Movie";
 import { getMoviesBySearchTerm, getMovie } from "../services/MoviesService";
+import { Errors } from "../constants/constants";
 
 export class MoviesStoreImp {
   movies: Movie[] = [];
@@ -32,9 +33,9 @@ export class MoviesStoreImp {
         });
       }
     } catch (err) {
-      this.errorMessage = "No movies with the word: " + searchTerm;
+      this.changeErrorMessage(Errors.NO_MOVIES_WITH_SEARCHTERM + searchTerm);
       this.resetMovies();
-      console.log("Getting movies failed", err);
+      console.log(Errors.GETTING_MOVIES_FAILER, err);
     }
   }
 
@@ -43,13 +44,20 @@ export class MoviesStoreImp {
       if (this.isFetching) return;
       this.toggleIsFetching();
       const data: GetMovieResponse = await getMovie(id);
+      const isMovieFound = !!data.movie;
+
       runInAction(() => {
-        data && this.toggleIsFetching();
+        isMovieFound && this.toggleIsFetching();
         this.selectedMovie = data.movie;
         this.resetErrorMessage();
+
+        if (data.movie === null) {
+          this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
+        }
       });
     } catch (err) {
-      console.log("Getting specific movie failed", err);
+      this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
+      console.log(Errors.GET_SPECIFIC_MOVIE_FAILED, err);
     }
   }
 
@@ -61,6 +69,10 @@ export class MoviesStoreImp {
 
   private resetErrorMessage(): void {
     this.errorMessage = "";
+  }
+
+  private changeErrorMessage(str: string) {
+    this.errorMessage = str;
   }
 
   private resetMovies(): void {
