@@ -37,7 +37,7 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
     <div className={'search-page-container'}>
       <Form getMoviesBySearchTerm={getMoviesBySearchTerm} moviesStore={moviesStore} inputValue={queryText} />
       <div className={`error`}>{moviesStore.errorMessage}</div>
-      <MoviesList movies={movies} />
+      <MoviesList movies={movies} isFetching={moviesStore.isFetching} />
     </div>
   );
 };
