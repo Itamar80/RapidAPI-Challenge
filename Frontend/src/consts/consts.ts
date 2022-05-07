@@ -1,4 +1,4 @@
-import { SystemErrors } from '../interfaces/Movie';
+import { SystemErrors } from '../types/Movie.types';
 
 export const Errors: SystemErrors = {
   NO_MOVIES_WITH_SEARCHTERM: 'No movies with the search term: ',

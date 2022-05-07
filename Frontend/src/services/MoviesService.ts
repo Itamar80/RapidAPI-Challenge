@@ -1,9 +1,9 @@
-import { GetMovieResponse, GetMoviesResponse } from './../interfaces/Movie';
+import { GetMovieResponse, GetMoviesResponse } from '../types/Movie.types';
 import axios, { AxiosResponse } from 'axios';
-import { DOMAIN } from '../constants/secret';
+import { DOMAIN } from '../consts/secret';
 
 export const getMoviesBySearchTerm = async (searchTerm: string): Promise<GetMoviesResponse> => {
-  const result: AxiosResponse = await axios.get(`${DOMAIN}/movies/${searchTerm}`);
+  const result: AxiosResponse = await axios.get(`${DOMAIN}/movies?movieName=${searchTerm}`);
   return result.data;
 };
 

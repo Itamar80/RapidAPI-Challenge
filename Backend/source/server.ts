@@ -1,6 +1,6 @@
 import http from 'http';
 import express, { Express } from 'express';
-import routes, { route } from './routes/movies';
+import routes from './routes/movies';
 import cors from 'cors';
 
 const router: Express = express();

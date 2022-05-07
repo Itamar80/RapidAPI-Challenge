@@ -7,7 +7,7 @@ import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { observer } from 'mobx-react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { getValueFromParams } from '../../helpers/utils';
-import { Movie } from '../../interfaces/Movie';
+import { Movie } from '../../types/Movie.types';
 interface MovieListProps {
   moviesStore: MoviesStoreImp;
 }

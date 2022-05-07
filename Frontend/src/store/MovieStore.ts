@@ -1,8 +1,8 @@
-import { DetailedMovie } from '../interfaces/Movie';
+import { DetailedMovie } from '../types/Movie.types';
 import { observable, makeObservable, action, runInAction } from 'mobx';
-import { GetMovieResponse, Movie, GetMoviesResponse } from '../interfaces/Movie';
+import { GetMovieResponse, Movie, GetMoviesResponse } from '../types/Movie.types';
 import { getMoviesBySearchTerm, getMovie } from '../services/MoviesService';
-import { Errors } from '../constants/constants';
+import { Errors } from '../consts/consts';
 
 export class MoviesStoreImp {
   movies: Movie[] = [];
@@ -29,24 +29,28 @@ export class MoviesStoreImp {
         });
       }
     } catch (err) {
+      console.log('asaa');
+
       this.changeErrorMessage(Errors.NO_MOVIES_WITH_SEARCHTERM + searchTerm);
       this.resetMovies();
+    } finally {
+      this.setIsFetching(false);
     }
   }
 
   public async getMovie(id: string): Promise<void> {
     try {
       if (this.isFetching) return;
-      this.toggleIsFetching();
+      this.setIsFetching(true);
       const data: GetMovieResponse = await getMovie(id);
       const isMovieFound = !!data.movie;
 
       runInAction(() => {
-        isMovieFound && this.toggleIsFetching();
+        isMovieFound && this.setIsFetching(false);
         this.selectedMovie = data.movie;
         this.resetErrorMessage();
 
-        if (data.movie === null) {
+        if (!data.movie) {
           this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
         }
       });
@@ -55,10 +59,8 @@ export class MoviesStoreImp {
     }
   }
 
-  private toggleIsFetching(): void {
-    runInAction(() => {
-      this.isFetching = !this.isFetching;
-    });
+  private setIsFetching(isFetching: boolean): void {
+    this.isFetching = isFetching;
   }
 
   private resetErrorMessage(): void {

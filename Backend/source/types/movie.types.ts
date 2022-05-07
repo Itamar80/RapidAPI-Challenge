@@ -1,21 +1,21 @@
-interface Rating {
+type Rating = {
   Source: string;
   Value: string;
-}
-export interface Movie {
+};
+export type Movie = {
   Title: string;
   Year: string;
   imdbID: string;
   Type: string;
   Poster: string;
-}
-export interface ParsedMovie {
+};
+export type ParsedMovie = {
   title: string;
   year: string;
   poster: string;
   id: string;
-}
-export interface ParsedDetailedMovie {
+};
+export type ParsedDetailedMovie = {
   title: string;
   year: string;
   poster: string;
@@ -37,8 +37,8 @@ export interface ParsedDetailedMovie {
   writer: string;
   imdbRating: string;
   imdbVotes: string;
-}
-export interface DetailedMovie {
+};
+export type DetailedMovie = {
   Actors: string;
   Awards: string;
   BoxOffice: string;
@@ -64,4 +64,4 @@ export interface DetailedMovie {
   imdbID: string;
   imdbRating: string;
   imdbVotes: string;
-}
+};

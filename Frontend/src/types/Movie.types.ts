@@ -1,9 +1,9 @@
-export interface Movie {
+export type Movie = {
   id: string;
   title: string;
   year: string;
   poster: string;
-}
+};
 
 export type SystemErrors = {
   NO_MOVIES_WITH_SEARCHTERM: string;
@@ -12,15 +12,15 @@ export type SystemErrors = {
   GET_SPECIFIC_MOVIE_FAILED: string;
 };
 
-export interface GetMoviesResponse {
+export type GetMoviesResponse = {
   movies: Movie[];
-}
+};
 
-interface Rating {
+export type Rating = {
   Source: string;
   Value: string;
-}
-export interface DetailedMovie {
+};
+export type DetailedMovie = {
   actors: string;
   awards: string;
   country: string;
@@ -42,8 +42,8 @@ export interface DetailedMovie {
   imdbID: string;
   imdbRating: string;
   imdbVotes: string;
-}
+};
 
-export interface GetMovieResponse {
+export type GetMovieResponse = {
   movie: DetailedMovie;
-}
+};

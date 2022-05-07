@@ -8,6 +8,8 @@ import BackIcon from '../../assets/arrow.png';
 import { isValueValid } from '../../helpers/utils';
 import RapidApiLogo from '../../assets/rapidAPI.svg';
 import RatingIcon from '../../assets/rating.svg';
+import { DetailedMovie, Rating } from '../../types/Movie.types';
+import { toJS } from 'mobx';
 interface MovieDetailsProps {
   moviesStore: MoviesStoreImp;
 }
@@ -17,7 +19,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
   const { id = '' } = useParams();
   const { isFetching, selectedMovie, errorMessage } = moviesStore;
   const movieGenres: string[] = selectedMovie?.genre.split(',') || [];
-  const isThereValue = (value: any) => value !== ('N/A' || '' || []);
+  const isThereValue = (value: any) => value !== 'N/A' || value !== [] || value !== '';
 
   const Genres = () => {
     return (
@@ -32,6 +34,39 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
       </div>
     );
   };
+
+  const movieInfoList = (movie: any): any => {
+    // delete movie.id;
+    // delete movie.poster;
+    return Object.keys(movie).map((key) => {
+      console.log('value', key);
+      if (Array.isArray(movie[key])) {
+        return (
+          <p>
+            <span>ratings </span>
+            {movie.ratings.map((rate: Rating) => {
+              return (
+                <div key={rate.Source}>
+                  {rate.Source}, {rate.Value}
+                </div>
+              );
+            })}
+          </p>
+        );
+      }
+      return (
+        <p>
+          <span>{key}</span>
+          {movie[key]}
+        </p>
+      );
+    });
+  };
+
+  // useEffect(() => {
+  //   if (!selectedMovie) return;
+  //   movieInfoList(selectedMovie);
+  // }, []);
 
   useEffect(() => {
     isValueValid(id) && moviesStore.getMovie(id);
@@ -54,12 +89,14 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
           <div className={'movie-header-section'}>
             <div className='movie-name-section'>
               <div className='movie-name'>{selectedMovie.title}</div>
+
               <div className='movie-info'>
                 <span>{selectedMovie.year}</span>
                 <span>{selectedMovie.rated}</span>
                 <span>{selectedMovie.runtime}</span>
               </div>
             </div>
+
             <div className='ratings-container'>
               <div>
                 <span>imdbRating:</span>
@@ -82,7 +119,8 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
             <img alt='poster' src={selectedMovie.poster} />
             <div className='data-container'>
               <Genres />
-              {isThereValue(selectedMovie.plot) && <p>{selectedMovie.plot}</p>}
+              <div>{movieInfoList(selectedMovie)}</div>
+              {/* {isThereValue(selectedMovie.plot) && <p>{selectedMovie.plot}</p>}
               {isThereValue(selectedMovie.director) && (
                 <p>
                   <span>director</span>
@@ -146,7 +184,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
                   <span>website</span>
                   {selectedMovie.website}
                 </p>
-              )}
+              )} */}
             </div>
           </div>
           <div></div>

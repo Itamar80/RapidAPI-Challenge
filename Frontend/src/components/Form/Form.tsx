@@ -13,10 +13,10 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, inputValue }) => {
   const [searchTerm, setSearchTerm] = useState<string>(inputValue || '');
   const isButtonDisabled = searchTerm === '' && !moviesStore.isFetching;
-  const disabledClass = isButtonDisabled ? 'disabled' : '';
-  const isMoviesInStore = !!moviesStore.movies.length;
-  const formAnimtaionClass = isMoviesInStore ? 'form-move-up' : 'form-move-down';
-  const logoAnimtaionClass = isMoviesInStore ? 'item-visibility-visible' : 'item-visibility-hidden';
+  const disabledClass: string = isButtonDisabled ? 'disabled' : '';
+  const isMoviesInStore: boolean = !!moviesStore.movies.length;
+  const formAnimtaionClass: string = isMoviesInStore ? 'form-move-up' : 'form-move-down';
+  const logoAnimtaionClass: string = isMoviesInStore ? 'item-visibility-visible' : 'item-visibility-hidden';
 
   return (
     <div className={`form-container ${formAnimtaionClass}`}>

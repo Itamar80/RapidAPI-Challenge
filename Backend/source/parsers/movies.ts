@@ -1,4 +1,4 @@
-import { Movie, ParsedMovie, ParsedDetailedMovie, DetailedMovie } from '../interfaces/movie.interfaces';
+import { Movie, ParsedMovie, ParsedDetailedMovie, DetailedMovie } from '../types/movie.types';
 
 export const parseMovies = (movies: Movie[]): ParsedMovie[] => {
   return movies.map((movie: Movie) => {

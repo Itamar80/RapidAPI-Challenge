@@ -1,6 +1,6 @@
 import React from 'react';
 import './movies-list.scss';
-import { Movie } from '../../interfaces/Movie';
+import { Movie } from '../../types/Movie.types';
 import { MovieCard } from '../MovieCard/MovieCard';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
