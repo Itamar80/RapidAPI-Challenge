@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { MOVIES_ENDPOINT, SUCCESS_MESSAGE } from '../consts/consts';
+import { ERROR_GETTING_MOVIE, ERROR_GETTING_MOVIES, MOVIES_ENDPOINT, SUCCESS_MESSAGE } from '../consts/consts';
 import { Request, Response } from 'express';
 import { parseMovies, parseToDetailedMovie } from '../parsers/movies';
 
@@ -18,7 +18,7 @@ export const getMoviesBySearchTerm = async (req: Request, res: Response) => {
     });
   } catch (err) {
     res.status(500).json({
-      message: 'Error in getting movies: ' + err,
+      message: ERROR_GETTING_MOVIES + err,
     });
   }
 };
@@ -36,7 +36,7 @@ export const getMovieById = async (req: Request, res: Response) => {
     });
   } catch (err) {
     res.status(500).json({
-      message: err,
+      message: ERROR_GETTING_MOVIE + err,
       movie: null,
     });
   }

@@ -10,6 +10,7 @@ import RapidApiLogo from '../../assets/rapidAPI.svg';
 import RatingIcon from '../../assets/rating.svg';
 import { DetailedMovie, Rating } from '../../types/Movie.types';
 import { toJS } from 'mobx';
+import DefaultPoster from '../../assets/default-poster.png';
 interface MovieDetailsProps {
   moviesStore: MoviesStoreImp;
 }
@@ -18,7 +19,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
   const navigate = useNavigate();
   const { id = '' } = useParams();
   const { isFetching, selectedMovie, errorMessage } = moviesStore;
-  const movieGenres: string[] = selectedMovie?.genre.split(',') || [];
+  const movieGenres: string[] = (selectedMovie && selectedMovie.genre && selectedMovie?.genre.split(',')) || [];
   const isThereValue = (value: any) => value !== 'N/A' || value !== [] || value !== '';
 
   const Genres = () => {
@@ -62,11 +63,6 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
       );
     });
   };
-
-  // useEffect(() => {
-  //   if (!selectedMovie) return;
-  //   movieInfoList(selectedMovie);
-  // }, []);
 
   useEffect(() => {
     isValueValid(id) && moviesStore.getMovie(id);
@@ -116,7 +112,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
             </div>
           </div>
           <div className='poster-section'>
-            <img alt='poster' src={selectedMovie.poster} />
+            <img alt='poster' src={selectedMovie.poster || DefaultPoster} />
             <div className='data-container'>
               <Genres />
               <div>{movieInfoList(selectedMovie)}</div>

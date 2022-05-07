@@ -1,4 +1,4 @@
-type Rating = {
+export type Rating = {
   Source: string;
   Value: string;
 };
@@ -16,27 +16,27 @@ export type ParsedMovie = {
   id: string;
 };
 export type ParsedDetailedMovie = {
-  title: string;
-  year: string;
-  poster: string;
-  id: string;
-  actors: string;
-  awards: string;
-  country: string;
-  director: string;
-  genre: string;
-  language: string;
-  metaScore: string;
-  plot: string;
-  production: string;
-  rated: string;
-  ratings: Rating[];
-  released: string;
-  runtime: string;
-  website: string;
-  writer: string;
-  imdbRating: string;
-  imdbVotes: string;
+  title?: string;
+  year?: string;
+  poster?: string;
+  id?: string;
+  actors?: string;
+  awards?: string;
+  country?: string;
+  director?: string;
+  genre?: string;
+  language?: string;
+  metaScore?: string;
+  plot?: string;
+  production?: string;
+  rated?: string;
+  ratings?: Rating[];
+  released?: string;
+  runtime?: string;
+  website?: string;
+  writer?: string;
+  imdbRating?: string;
+  imdbVotes?: string;
 };
 export type DetailedMovie = {
   Actors: string;

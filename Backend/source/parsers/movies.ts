@@ -1,3 +1,4 @@
+import { checkIsValidInput, isKeyValid } from '../helpers/helper';
 import { Movie, ParsedMovie, ParsedDetailedMovie, DetailedMovie } from '../types/movie.types';
 
 export const parseMovies = (movies: Movie[]): ParsedMovie[] => {
@@ -11,28 +12,13 @@ export const parseMovies = (movies: Movie[]): ParsedMovie[] => {
   });
 };
 
-export const parseToDetailedMovie = (movie: DetailedMovie): ParsedDetailedMovie => {
-  return {
-    title: movie.Title,
-    year: movie.Year,
-    poster: movie.Poster,
-    id: movie.imdbID,
-    actors: movie.Actors,
-    awards: movie.Awards,
-    country: movie.Country,
-    director: movie.Director,
-    genre: movie.Genre,
-    language: movie.Language,
-    metaScore: movie.Metascore,
-    plot: movie.Plot,
-    production: movie.Production,
-    rated: movie.Rated,
-    ratings: movie.Ratings,
-    released: movie.Released,
-    runtime: movie.Runtime,
-    website: movie.Website,
-    writer: movie.Writer,
-    imdbRating: movie.imdbRating,
-    imdbVotes: movie.imdbVotes,
-  };
+export const parseToDetailedMovie = (movie: any): ParsedDetailedMovie => {
+  let parsedMovie: ParsedDetailedMovie = {};
+  Object.keys(movie).map((key) => {
+    if (isKeyValid(key) && checkIsValidInput(movie[key as keyof DetailedMovie])) {
+      let lowerCaseKey = key.charAt(0).toLowerCase() + key.substring(1, key.length);
+      parsedMovie[lowerCaseKey as keyof ParsedDetailedMovie] = movie[key as keyof DetailedMovie];
+    }
+  });
+  return parsedMovie;
 };

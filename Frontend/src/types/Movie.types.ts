@@ -21,27 +21,27 @@ export type Rating = {
   Value: string;
 };
 export type DetailedMovie = {
-  actors: string;
-  awards: string;
-  country: string;
-  director: string;
-  genre: string;
-  language: string;
-  metascore: string;
-  plot: string;
-  poster: string;
-  production: string;
-  rated: string;
-  ratings: Rating[];
-  released: string;
-  runtime: string;
-  title: string;
-  website: string;
-  writer: string;
-  year: string;
-  imdbID: string;
-  imdbRating: string;
-  imdbVotes: string;
+  actors?: string;
+  awards?: string;
+  country?: string;
+  director?: string;
+  genre?: string;
+  language?: string;
+  metascore?: string;
+  plot?: string;
+  poster?: string;
+  production?: string;
+  rated?: string;
+  ratings?: Rating[];
+  released?: string;
+  runtime?: string;
+  title?: string;
+  website?: string;
+  writer?: string;
+  year?: string;
+  imdbID?: string;
+  imdbRating?: string;
+  imdbVotes?: string;
 };
 
 export type GetMovieResponse = {
