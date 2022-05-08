@@ -11,7 +11,7 @@ export const MovieNameSection: React.FC<MovieNameSectionProps> = ({ movie }) => 
     <div className='movie-name-section'>
       <div className='movie-name'>{movie.title}</div>
 
-      <div className='movie-top-data'>
+      <div className='movie-data'>
         <span>{movie.year}</span>
         <span>{movie.rated}</span>
         <span>{movie.runtime}</span>

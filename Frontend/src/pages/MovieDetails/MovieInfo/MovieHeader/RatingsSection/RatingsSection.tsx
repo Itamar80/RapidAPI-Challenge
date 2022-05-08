@@ -1,38 +1,27 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import './ratings.scss';
-import { NO_DATA_AVAILABLE } from '../../../../../consts/consts';
 import { DetailedMovie } from '../../../../../types/Movie.types';
-import RatingIcon from '../../../../../assets/rating.svg';
+import { RatingData } from './RatingData/RatingData';
 
 type RatingsSectionProps = {
   movie: DetailedMovie;
 };
-type DataProps = {
-  data?: string;
-};
+
 export const RatingsSection: React.FC<RatingsSectionProps> = ({ movie }) => {
   const keys = ['imdbRating', 'imdbVotes', 'language'];
-  const RenderData = (props: any) => {
-    return <span>{props.data || NO_DATA_AVAILABLE}</span>;
-  };
-  const RenderKeys = () => {
-    return (
+  return (
+    <div className='ratings-section-container'>
       <div className='ratings-container'>
         {keys.map((key: string) => {
+          const isIconVisible = !!movie[key as keyof DetailedMovie] && key === 'imdbRating';
           return (
             <div>
               <span>{key}</span>
-              <RenderData data={movie[key as keyof DetailedMovie]} />
-              {movie[key as keyof DetailedMovie] && key === 'imdbRating' && <img src={RatingIcon} />}{' '}
+              <RatingData data={movie[key as keyof DetailedMovie]?.toString()} isIconVisible={isIconVisible} />
             </div>
           );
         })}
       </div>
-    );
-  };
-  return (
-    <div className='ratings-section-container'>
-      <RenderKeys />
     </div>
   );
 };

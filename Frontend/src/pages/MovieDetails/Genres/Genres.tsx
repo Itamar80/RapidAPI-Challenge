@@ -1,5 +1,5 @@
 import React from 'react';
-import '../movie-details.scss';
+import './genres.scss';
 
 type GenresProps = {
   movieGenres: string[];
