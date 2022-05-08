@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './loader.scss';
 import LoaderIcon from '../../assets/loader.svg';
-interface LoaderProps {}
+type LoaderProps = {};
 
 export const Loader: React.FC<LoaderProps> = (props) => {
   return (

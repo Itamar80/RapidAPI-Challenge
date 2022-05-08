@@ -1,4 +1,5 @@
-import { checkIsValidInput, isKeyValid } from '../helpers/helper';
+import { NO_DATA_AVAILABLE } from '../consts/consts';
+import { isKeyValid, checkIsValidInput } from '../helpers/helper';
 import { Movie, ParsedMovie, ParsedDetailedMovie, DetailedMovie } from '../types/movie.types';
 
 export const parseMovies = (movies: Movie[]): ParsedMovie[] => {
@@ -17,7 +18,9 @@ export const parseToDetailedMovie = (movie: any): ParsedDetailedMovie => {
   Object.keys(movie).map((key) => {
     if (isKeyValid(key) && checkIsValidInput(movie[key as keyof DetailedMovie])) {
       let lowerCaseKey = key.charAt(0).toLowerCase() + key.substring(1, key.length);
+      // if (checkIsValidInput(movie[key as keyof DetailedMovie])) {
       parsedMovie[lowerCaseKey as keyof ParsedDetailedMovie] = movie[key as keyof DetailedMovie];
+      // }
     }
   });
   return parsedMovie;

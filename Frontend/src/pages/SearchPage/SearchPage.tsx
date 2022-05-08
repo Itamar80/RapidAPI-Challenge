@@ -8,9 +8,9 @@ import { observer } from 'mobx-react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { getValueFromParams } from '../../helpers/utils';
 import { Movie } from '../../types/Movie.types';
-interface MovieListProps {
+type MovieListProps = {
   moviesStore: MoviesStoreImp;
-}
+};
 
 const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
   const [movies, setMovies] = useState<Movie[]>([]);

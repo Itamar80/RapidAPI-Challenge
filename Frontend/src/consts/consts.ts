@@ -6,3 +6,10 @@ export const Errors: SystemErrors = {
   NO_MOVIE_WITH_GIVEN_ID: 'No movie with that id: ',
   GET_SPECIFIC_MOVIE_FAILED: 'Getting specific movie failed',
 };
+
+export const NO_DATA_AVAILABLE = 'Not available';
+export const DISABLED = 'disabled';
+export const FORM_MOVE_UP = 'form-move-up';
+export const FORM_MOVE_DOWN = 'form-move-DOWN';
+export const ITEM_VISIBLE = 'item-visibility-visible';
+export const ITEM_HIDDEN = 'item-visibility-hidden';

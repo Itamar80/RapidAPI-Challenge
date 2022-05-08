@@ -5,10 +5,10 @@ import { MovieCard } from '../MovieCard/MovieCard';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
 
-interface MoviesListProps {
+type MoviesListProps = {
   movies: Movie[];
   isFetching: boolean;
-}
+};
 
 export const MoviesList: React.FC<MoviesListProps> = (props) => {
   const navigate = useNavigate();

@@ -1,0 +1,21 @@
+.movie-name-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .movie-name {
+    margin-bottom: 0.3rem;
+    font-size: 3rem;
+  }
+
+  .movie-info {
+    span {
+      color: rgb(151, 151, 151);
+    }
+    span:before {
+      display: inline-block;
+      margin: 0 0.2rem 0.2rem;
+      content: ' *';
+    }
+  }
+}

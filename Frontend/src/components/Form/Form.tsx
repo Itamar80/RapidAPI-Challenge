@@ -4,19 +4,20 @@ import './Form.scss';
 import '../../styles/animations.scss';
 import SearchIcon from '../../assets/search.svg';
 import RapodAPILogo from '../../assets/rapidAPI.svg';
-interface FormProps {
+import { DISABLED, FORM_MOVE_DOWN, FORM_MOVE_UP, ITEM_HIDDEN, ITEM_VISIBLE } from '../../consts/consts';
+type FormProps = {
   getMoviesBySearchTerm: (searchTerm: string) => void;
   moviesStore: MoviesStoreImp;
   inputValue: string;
-}
+};
 
 const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, inputValue }) => {
   const [searchTerm, setSearchTerm] = useState<string>(inputValue || '');
   const isButtonDisabled = searchTerm === '' && !moviesStore.isFetching;
-  const disabledClass: string = isButtonDisabled ? 'disabled' : '';
+  const disabledClass: string = isButtonDisabled ? DISABLED : '';
   const isMoviesInStore: boolean = !!moviesStore.movies.length;
-  const formAnimtaionClass: string = isMoviesInStore ? 'form-move-up' : 'form-move-down';
-  const logoAnimtaionClass: string = isMoviesInStore ? 'item-visibility-visible' : 'item-visibility-hidden';
+  const formAnimtaionClass: string = isMoviesInStore ? FORM_MOVE_UP : FORM_MOVE_DOWN;
+  const logoAnimtaionClass: string = isMoviesInStore ? ITEM_VISIBLE : ITEM_HIDDEN;
 
   return (
     <div className={`form-container ${formAnimtaionClass}`}>
