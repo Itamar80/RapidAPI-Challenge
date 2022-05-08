@@ -29,8 +29,6 @@ export class MoviesStoreImp {
         });
       }
     } catch (err) {
-      console.log('asaa');
-
       this.changeErrorMessage(Errors.NO_MOVIES_WITH_SEARCHTERM + searchTerm);
       this.resetMovies();
     } finally {
@@ -49,15 +47,13 @@ export class MoviesStoreImp {
         isMovieFound && this.setIsFetching(false);
         this.selectedMovie = data.movie;
         this.resetErrorMessage();
-
-        if (!data.movie) {
-          this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
-        }
       });
     } catch (err) {
       this.resetSelectedMovie();
       this.setIsFetching(false);
       this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
+    } finally {
+      this.setIsFetching(false);
     }
   }
 

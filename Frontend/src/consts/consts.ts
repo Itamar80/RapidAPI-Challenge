@@ -7,9 +7,9 @@ export const Errors: SystemErrors = {
   GET_SPECIFIC_MOVIE_FAILED: 'Getting specific movie failed',
 };
 
-export const NO_DATA_AVAILABLE = 'Not available';
-export const DISABLED = 'disabled';
-export const FORM_MOVE_UP = 'form-move-up';
-export const FORM_MOVE_DOWN = 'form-move-down';
-export const ITEM_VISIBLE = 'item-visibility-visible';
-export const ITEM_HIDDEN = 'item-visibility-hidden';
+export const NO_DATA_AVAILABLE: string = 'Not available';
+export const DISABLED: string = 'disabled';
+export const FORM_MOVE_UP: string = 'form-move-up';
+export const FORM_MOVE_DOWN: string = 'form-move-down';
+export const ITEM_VISIBLE: string = 'item-visibility-visible';
+export const ITEM_HIDDEN: string = 'item-visibility-hidden';
