@@ -2,7 +2,7 @@ import React from 'react';
 import './movie-info.scss';
 import DefaultPoster from '../../../assets/default-poster.png';
 import { Genres } from '../Genres/Genres';
-import { DetailedMovie, Rating } from '../../../types/Movie.types';
+import { DetailedMovie } from '../../../types/Movie.types';
 import { MovieHeader } from './MovieHeader/MovieHeader';
 import { MovieRestData } from './MovieRestData/MovieRestData';
 

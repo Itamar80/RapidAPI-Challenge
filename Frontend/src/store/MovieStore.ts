@@ -55,8 +55,14 @@ export class MoviesStoreImp {
         }
       });
     } catch (err) {
+      this.resetSelectedMovie();
+      this.setIsFetching(false);
       this.changeErrorMessage(Errors.NO_MOVIE_WITH_GIVEN_ID + id);
     }
+  }
+
+  private resetSelectedMovie() {
+    this.selectedMovie = null;
   }
 
   private setIsFetching(isFetching: boolean): void {

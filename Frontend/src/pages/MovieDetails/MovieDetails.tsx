@@ -19,11 +19,21 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
     isValueValid(id) && moviesStore.getMovie(id);
   }, [id, moviesStore]);
 
+  const RenderInfo = () => {
+    if (isFetching) {
+      return <Loader />;
+    }
+    if (selectedMovie) {
+      return <MovieInfo movie={selectedMovie} />;
+    }
+    return <div></div>;
+  };
+
   return (
     <div className={'movie-details-container'}>
       <NavBar />
-      {errorMessage !== '' && errorMessage}
-      {isFetching || !selectedMovie ? <Loader /> : <MovieInfo movie={selectedMovie} />}
+      <div className={`error`}>{errorMessage}</div>
+      <RenderInfo />
     </div>
   );
 };

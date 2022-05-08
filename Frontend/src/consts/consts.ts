@@ -10,6 +10,6 @@ export const Errors: SystemErrors = {
 export const NO_DATA_AVAILABLE = 'Not available';
 export const DISABLED = 'disabled';
 export const FORM_MOVE_UP = 'form-move-up';
-export const FORM_MOVE_DOWN = 'form-move-DOWN';
+export const FORM_MOVE_DOWN = 'form-move-down';
 export const ITEM_VISIBLE = 'item-visibility-visible';
 export const ITEM_HIDDEN = 'item-visibility-hidden';

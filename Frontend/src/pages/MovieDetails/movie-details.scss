@@ -1,28 +1,35 @@
-.nav-bar {
-  height: 60px;
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  .rapidapi-logo {
-    cursor: pointer;
+.movie-details-container {
+  .error {
+    color: red;
+    text-align: center;
+    line-height: 20;
   }
-  .go-back-button {
-    width: 7rem;
-    cursor: pointer;
+  .nav-bar {
+    height: 60px;
+    background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 5px;
-    color: #1f222e;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    img {
-      width: 20px;
+    .rapidapi-logo {
+      cursor: pointer;
     }
-    span {
-      font-size: 1rem;
+    .go-back-button {
+      width: 7rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 5px;
+      color: #1f222e;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      img {
+        width: 20px;
+      }
+      span {
+        font-size: 1rem;
+      }
     }
   }
 }
