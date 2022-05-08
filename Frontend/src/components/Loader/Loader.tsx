@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './loader.scss';
 import LoaderIcon from '../../assets/loader.svg';
 type LoaderProps = {};
@@ -6,7 +6,7 @@ type LoaderProps = {};
 export const Loader: React.FC<LoaderProps> = (props) => {
   return (
     <div className={'loader-container'}>
-      <img src={LoaderIcon} />
+      <img alt='loader' src={LoaderIcon} />
     </div>
   );
 };

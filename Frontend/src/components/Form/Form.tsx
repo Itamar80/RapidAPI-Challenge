@@ -21,10 +21,10 @@ const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, inputVa
 
   return (
     <div className={`form-container ${formAnimtaionClass}`}>
-      <img className={`rapidapi-logo ${logoAnimtaionClass}`} src={RapodAPILogo} />
+      <img alt='rapidapi-logo' className={`rapidapi-logo ${logoAnimtaionClass}`} src={RapodAPILogo} />
       <input type={'text'} placeholder={'Search'} onChange={(event) => setSearchTerm(event.target.value)} value={searchTerm} />
       <button className={`search-button ${disabledClass}`} disabled={isButtonDisabled} onClick={() => getMoviesBySearchTerm(searchTerm)}>
-        <img src={SearchIcon} />
+        <img alt='search-icon' src={SearchIcon} />
       </button>
     </div>
   );

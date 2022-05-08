@@ -14,7 +14,7 @@ export const NavBar: React.FC<NavBarProps> = (props) => {
         <img alt='back' src={BackIcon} />
         <span>Go back</span>
       </button>
-      <img className='rapidapi-logo' src={RapidApiLogo} onClick={() => navigate(-1)} />
+      <img alt='rapidapi-icon' className='rapidapi-logo' src={RapidApiLogo} onClick={() => navigate(-1)} />
     </nav>
   );
 };

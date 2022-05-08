@@ -8,7 +8,7 @@ export const RatingData: React.FC<RatingDataProps> = ({ data, isIconVisible }) =
   return (
     <div className='header-rating-data'>
       <span>{data || NO_DATA_AVAILABLE}</span>
-      {isIconVisible && <img src={RatingIcon} />}
+      {isIconVisible && <img alt='rating-icon' src={RatingIcon} />}
     </div>
   );
 };
