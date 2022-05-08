@@ -16,8 +16,8 @@ export const parseToDetailedMovie = (movie: any): ParsedDetailedMovie => {
   let parsedMovie: ParsedDetailedMovie = {};
   Object.keys(movie).map((key) => {
     if (isKeyValid(key) && checkIsValidInput(movie[key as keyof DetailedMovie])) {
-      let lowerCaseKey: string = key.charAt(0).toLowerCase() + key.substring(1, key.length);
-      parsedMovie[lowerCaseKey as keyof ParsedDetailedMovie] = movie[key as keyof DetailedMovie];
+      const lowerCaseKey = (key.charAt(0).toLowerCase() + key.substring(1, key.length)) as keyof ParsedDetailedMovie;
+      parsedMovie[lowerCaseKey] = movie[key as keyof DetailedMovie];
     }
   });
   return parsedMovie;

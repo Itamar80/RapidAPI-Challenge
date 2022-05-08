@@ -1,5 +1,13 @@
 .movie-field-string-data-container {
-  div {
-    display: inline;
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 0px;
+
+  span {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  p {
+    margin: 0;
   }
 }

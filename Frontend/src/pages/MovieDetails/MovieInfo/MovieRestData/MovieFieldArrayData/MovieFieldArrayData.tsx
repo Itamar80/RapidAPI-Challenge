@@ -9,15 +9,15 @@ type MovieFieldArrayDataProps = {
 
 export const MovieFieldArrayData: React.FC<MovieFieldArrayDataProps> = ({ array }) => {
   return (
-    <p>
+    <div className='movie-field-array-data-container'>
       <span>Ratings </span>
       {array.map((rate: Rating) => {
         return (
-          <div key={rate.Source}>
+          <p key={rate.Source}>
             {transformFirstLetterToCapital(rate.Source)}, {rate.Value}
-          </div>
+          </p>
         );
       })}
-    </p>
+    </div>
   );
 };

@@ -10,10 +10,8 @@ type MovieFieldStringDataProps = {
 export const MovieFieldStringData: React.FC<MovieFieldStringDataProps> = ({ value, movieKey }) => {
   return (
     <div className='movie-field-string-data-container'>
-      <p>
-        <span>{transformFirstLetterToCapital(movieKey)}: </span>
-        <div>{value}</div>
-      </p>
+      <span>{transformFirstLetterToCapital(movieKey)}: </span>
+      <p>{value}</p>
     </div>
   );
 };
