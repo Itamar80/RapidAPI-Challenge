@@ -15,7 +15,7 @@ export const RatingsSection: React.FC<RatingsSectionProps> = ({ movie }) => {
         {keys.map((key: string) => {
           const isIconVisible = !!movie[key as keyof DetailedMovie] && key === 'imdbRating';
           return (
-            <div>
+            <div key={key}>
               <span>{key}</span>
               <RatingData data={movie[key as keyof DetailedMovie]?.toString()} isIconVisible={isIconVisible} />
             </div>

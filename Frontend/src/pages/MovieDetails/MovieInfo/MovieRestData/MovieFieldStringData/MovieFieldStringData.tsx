@@ -1,21 +1,18 @@
 import React from 'react';
 import './move-field-string-data.scss';
-import { DetailedMovie, Rating } from '../../../../../types/Movie.types';
 import { transformFirstLetterToCapital } from '../../../../../helpers/utils';
 
 type MovieFieldStringDataProps = {
-  value?: any;
+  value: string | undefined;
   movieKey: string;
 };
 
 export const MovieFieldStringData: React.FC<MovieFieldStringDataProps> = ({ value, movieKey }) => {
-  console.log('movieKey', movieKey);
-
   return (
-    <div className={'detailed-movie'}>
+    <div className='movie-field-string-data-container'>
       <p>
-        <span>{transformFirstLetterToCapital(movieKey)}:</span>
-        <span>{value}</span>
+        <span>{transformFirstLetterToCapital(movieKey)}: </span>
+        <div>{value}</div>
       </p>
     </div>
   );

@@ -17,7 +17,7 @@ export const MovieRestData: React.FC<MovieRestDataProps> = ({ movie }) => {
         if (movie.ratings && Array.isArray(movie[key as keyof DetailedMovie])) {
           return <MovieFieldArrayData array={movie.ratings} key={key} />;
         }
-        return <MovieFieldStringData value={movie[key as keyof DetailedMovie]} key={key} movieKey={key} />;
+        return <MovieFieldStringData value={movie[key as keyof DetailedMovie]?.toString()} key={key} movieKey={key} />;
       })}
     </div>
   );
