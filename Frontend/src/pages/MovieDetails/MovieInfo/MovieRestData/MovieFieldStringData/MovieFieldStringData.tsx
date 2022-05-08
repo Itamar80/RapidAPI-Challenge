@@ -1,17 +1,22 @@
 import React from 'react';
-import './movie-rest-data.scss';
+import './move-field-string-data.scss';
 import { DetailedMovie, Rating } from '../../../../../types/Movie.types';
+import { transformFirstLetterToCapital } from '../../../../../helpers/utils';
 
-type MovieFieldDataProps = {
-  key: string;
-  value: string;
+type MovieFieldStringDataProps = {
+  value?: any;
+  movieKey: string;
 };
 
-export const MovieFieldData: React.FC<MovieFieldDataProps> = ({ key, value }) => {
+export const MovieFieldStringData: React.FC<MovieFieldStringDataProps> = ({ value, movieKey }) => {
+  console.log('movieKey', movieKey);
+
   return (
     <div className={'detailed-movie'}>
-      {/* <DataList movie={movie} /> */}
-      fielddata
+      <p>
+        <span>{transformFirstLetterToCapital(movieKey)}:</span>
+        <span>{value}</span>
+      </p>
     </div>
   );
 };

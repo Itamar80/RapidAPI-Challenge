@@ -12,31 +12,6 @@ type MovieInfoProps = {
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({ movie }) => {
   const movieGenres: string[] = (movie?.genre && movie?.genre.split(',')) || [];
-  const movieInfoList = (movie: any): any => {
-    return Object.keys(movie).map((key) => {
-      console.log('value', key);
-      if (Array.isArray(movie[key])) {
-        return (
-          <p>
-            <span>ratings </span>
-            {movie.ratings.map((rate: Rating) => {
-              return (
-                <div key={rate.Source}>
-                  {rate.Source}, {rate.Value}
-                </div>
-              );
-            })}
-          </p>
-        );
-      }
-      return (
-        <p>
-          <span>{key}</span>
-          {movie[key]}
-        </p>
-      );
-    });
-  };
   return (
     <div className={'detailed-movie'}>
       <MovieHeader movie={movie} />

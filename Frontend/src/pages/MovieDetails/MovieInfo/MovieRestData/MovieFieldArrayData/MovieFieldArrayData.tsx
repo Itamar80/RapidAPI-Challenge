@@ -1,6 +1,7 @@
 import React from 'react';
-import './movie-rest-data.scss';
-import { DetailedMovie, Rating } from '../../../../../types/Movie.types';
+import './move-field-array-data.scss';
+import { Rating } from '../../../../../types/Movie.types';
+import { transformFirstLetterToCapital } from '../../../../../helpers/utils';
 
 type MovieFieldArrayDataProps = {
   array: Rating[];
@@ -9,11 +10,11 @@ type MovieFieldArrayDataProps = {
 export const MovieFieldArrayData: React.FC<MovieFieldArrayDataProps> = ({ array }) => {
   return (
     <p>
-      <span>ratings </span>
+      <span>Ratings </span>
       {array.map((rate: Rating) => {
         return (
           <div key={rate.Source}>
-            {rate.Source}, {rate.Value}
+            {transformFirstLetterToCapital(rate.Source)}, {rate.Value}
           </div>
         );
       })}
