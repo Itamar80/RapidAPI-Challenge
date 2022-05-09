@@ -5,8 +5,7 @@ import Form from '../../components/Form/Form';
 import { MoviesStoreImp } from '../../store/MovieStore';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
 import { observer } from 'mobx-react';
-import { useSearchParams, useLocation } from 'react-router-dom';
-import { getValueFromParams } from '../../helpers/utils';
+import { useSearchParams } from 'react-router-dom';
 import { Movie } from '../../types/Movie.types';
 type MovieListProps = {
   moviesStore: MoviesStoreImp;
@@ -15,13 +14,18 @@ type MovieListProps = {
 const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { search } = useLocation();
-  const getMoviesBySearchTerm = (searchTerm: string): void => {
-    setSearchParams({ q: searchTerm });
-    moviesStore.getMovies(searchTerm);
-  };
+  const [queryText, setQueryText] = useState<string>(searchParams.get('q') || '');
 
-  const queryText: string = getValueFromParams(search, '=');
+  const getMoviesBySearchTerm = (searchTerm: string): void => {
+    try {
+      setSearchParams({ q: searchTerm });
+      setQueryText(searchTerm);
+    } catch (err) {
+      throw err;
+    } finally {
+      moviesStore.getMovies(searchTerm);
+    }
+  };
 
   useEffect(() => {
     if (moviesStore.movies.length) {
@@ -37,7 +41,7 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
     if (moviesStore.selectedMovie) {
       moviesStore.resetSelectedMovie();
     }
-  }, []);
+  }, [moviesStore]);
 
   return (
     <div className={'search-page-container'}>
