@@ -17,14 +17,9 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
   const [queryText, setQueryText] = useState<string>(searchParams.get('q') || '');
 
   const getMoviesBySearchTerm = (searchTerm: string): void => {
-    try {
-      setSearchParams({ q: searchTerm });
-      setQueryText(searchTerm);
-    } catch (err) {
-      throw err;
-    } finally {
-      moviesStore.getMovies(searchTerm);
-    }
+    setSearchParams({ q: searchTerm });
+    setQueryText(searchTerm);
+    moviesStore.getMovies(searchTerm);
   };
 
   useEffect(() => {
