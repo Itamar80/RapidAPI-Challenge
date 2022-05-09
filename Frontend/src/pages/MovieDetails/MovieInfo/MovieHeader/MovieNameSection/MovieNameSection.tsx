@@ -7,14 +7,16 @@ type MovieNameSectionProps = {
 };
 
 export const MovieNameSection: React.FC<MovieNameSectionProps> = ({ movie }) => {
+  const fields: string[] = ['year', 'rated', 'runtime'];
   return (
     <div className='movie-name-section'>
       <div className='movie-name'>{movie.title}</div>
 
       <div className='movie-data'>
-        <span>{movie.year}</span>
-        <span>{movie.rated}</span>
-        <span>{movie.runtime}</span>
+        {fields.map((field: string) => {
+          const isField = !!movie[field as keyof DetailedMovie];
+          return isField && <span key={field}>{movie[field as keyof DetailedMovie] as keyof DetailedMovie}</span>;
+        })}
       </div>
     </div>
   );

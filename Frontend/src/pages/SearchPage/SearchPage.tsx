@@ -34,7 +34,9 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
   }, [moviesStore.movies]);
 
   useEffect(() => {
-    moviesStore.resetSelectedMovie();
+    if (moviesStore.selectedMovie) {
+      moviesStore.resetSelectedMovie();
+    }
   }, []);
 
   return (
