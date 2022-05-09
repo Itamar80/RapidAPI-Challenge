@@ -1,7 +1,7 @@
 import React from 'react';
 import './nav-bar.scss';
-import BackIcon from '../../../assets/arrow.png';
-import RapidApiLogo from '../../../assets/rapidAPI.svg';
+import BackIcon from '../../assets/arrow.png';
+import RapidApiLogo from '../../assets/rapidAPI.svg';
 import { useNavigate } from 'react-router-dom';
 
 export const NavBar: React.FC = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './move-field-array-data.scss';
-import { Rating } from '../../../../../types/Movie.types';
-import { transformFirstLetterToCapital } from '../../../../../helpers/utils';
+import { Rating } from '../../types/Movie.types';
+import { transformFirstLetterToCapital } from '../../helpers/utils';
 
 type MovieFieldArrayDataProps = {
   array: Rating[];

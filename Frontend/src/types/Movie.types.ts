@@ -12,6 +12,10 @@ export type SystemErrors = {
   GET_SPECIFIC_MOVIE_FAILED: string;
 };
 
+export type GetMovieResponse = {
+  movie: DetailedMovie;
+};
+
 export type GetMoviesResponse = {
   movies: Movie[];
 };
@@ -42,8 +46,4 @@ export type DetailedMovie = {
   imdbID?: string;
   imdbRating?: string;
   imdbVotes?: string;
-};
-
-export type GetMovieResponse = {
-  movie: DetailedMovie;
 };

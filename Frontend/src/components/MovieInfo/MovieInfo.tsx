@@ -1,10 +1,10 @@
 import React from 'react';
 import './movie-info.scss';
-import DefaultPoster from '../../../assets/default-poster.png';
+import DefaultPoster from '../../assets/default-poster.png';
 import { Genres } from '../Genres/Genres';
-import { DetailedMovie } from '../../../types/Movie.types';
-import { MovieHeader } from './MovieHeader/MovieHeader';
-import { MovieRestData } from './MovieRestData/MovieRestData';
+import { DetailedMovie } from '../../types/Movie.types';
+import { MovieHeader } from '../MovieHeader/MovieHeader';
+import { MovieRestData } from '../MovieRestData/MovieRestData';
 
 type MovieInfoProps = {
   movie: DetailedMovie;

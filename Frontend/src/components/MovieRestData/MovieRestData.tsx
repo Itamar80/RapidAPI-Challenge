@@ -1,9 +1,9 @@
 import React from 'react';
 import './movie-rest-data.scss';
-import { DetailedMovie } from '../../../../types/Movie.types';
-import { MovieFieldArrayData } from './MovieFieldArrayData/MovieFieldArrayData';
-import { MovieFieldStringData } from './MovieFieldStringData/MovieFieldStringData';
-import { parseMovieObject } from '../../../../helpers/utils';
+import { DetailedMovie } from '../../types/Movie.types';
+import { MovieFieldArrayData } from '../MovieFieldArrayData/MovieFieldArrayData';
+import { MovieFieldStringData } from '../MovieFieldStringData/MovieFieldStringData';
+import { parseMovieObject } from '../../helpers/utils';
 type MovieRestDataProps = {
   movie: DetailedMovie;
 };

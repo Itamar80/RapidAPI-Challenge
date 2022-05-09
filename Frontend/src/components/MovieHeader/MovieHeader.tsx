@@ -1,8 +1,8 @@
 import React from 'react';
 import './movie-header.scss';
-import { DetailedMovie } from '../../../../types/Movie.types';
-import { MovieNameSection } from './MovieNameSection/MovieNameSection';
-import { RatingsSection } from './RatingsSection/RatingsSection';
+import { DetailedMovie } from '../../types/Movie.types';
+import { MovieNameSection } from '../MovieNameSection/MovieNameSection';
+import { RatingsSection } from '../RatingsSection/RatingsSection';
 
 type MovieHeaderProps = {
   movie: DetailedMovie;

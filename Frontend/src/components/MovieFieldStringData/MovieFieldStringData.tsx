@@ -1,6 +1,6 @@
 import React from 'react';
 import './move-field-string-data.scss';
-import { transformFirstLetterToCapital } from '../../../../../helpers/utils';
+import { transformFirstLetterToCapital } from '../../helpers/utils';
 
 type MovieFieldStringDataProps = {
   value: string | undefined;

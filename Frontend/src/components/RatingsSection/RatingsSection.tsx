@@ -1,7 +1,7 @@
 import React from 'react';
 import './ratings.scss';
-import { DetailedMovie } from '../../../../../types/Movie.types';
-import { RatingData } from './RatingData/RatingData';
+import { DetailedMovie } from '../../types/Movie.types';
+import { RatingData } from '../RatingData/RatingData';
 
 type RatingsSectionProps = {
   movie: DetailedMovie;

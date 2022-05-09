@@ -5,8 +5,8 @@ import { MoviesStoreImp } from '../../store/MovieStore';
 import { observer } from 'mobx-react';
 import { Loader } from '../../components/Loader/Loader';
 import { isValueValid } from '../../helpers/utils';
-import { NavBar } from './NavBar/NavBar';
-import { MovieInfo } from './MovieInfo/MovieInfo';
+import { NavBar } from '../../components/NavBar/NavBar';
+import { MovieInfo } from '../../components/MovieInfo/MovieInfo';
 type MovieDetailsProps = {
   moviesStore: MoviesStoreImp;
 };

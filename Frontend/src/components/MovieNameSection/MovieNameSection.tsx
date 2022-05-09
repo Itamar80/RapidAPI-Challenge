@@ -1,6 +1,6 @@
 import React from 'react';
 import './movie-name-section.scss';
-import { DetailedMovie } from '../../../../../types/Movie.types';
+import { DetailedMovie } from '../../types/Movie.types';
 
 type MovieNameSectionProps = {
   movie: DetailedMovie;
