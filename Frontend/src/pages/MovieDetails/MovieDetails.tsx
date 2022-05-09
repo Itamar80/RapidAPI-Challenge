@@ -26,7 +26,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
     if (selectedMovie) {
       return <MovieInfo movie={selectedMovie} />;
     }
-    return <div></div>;
+    return <Loader />;
   };
 
   return (

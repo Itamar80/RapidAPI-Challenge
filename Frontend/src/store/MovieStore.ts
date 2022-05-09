@@ -15,6 +15,8 @@ export class MoviesStoreImp {
       movies: observable,
       selectedMovie: observable,
       errorMessage: observable,
+      setIsFetching: action,
+      resetSelectedMovie: action,
       getMovies: action,
     });
   }
@@ -57,11 +59,11 @@ export class MoviesStoreImp {
     }
   }
 
-  private resetSelectedMovie() {
+  resetSelectedMovie() {
     this.selectedMovie = null;
   }
 
-  private setIsFetching(isFetching: boolean): void {
+  setIsFetching(isFetching: boolean): void {
     this.isFetching = isFetching;
   }
 

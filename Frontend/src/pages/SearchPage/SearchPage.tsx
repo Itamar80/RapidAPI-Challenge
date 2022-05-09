@@ -33,6 +33,10 @@ const SearchPage: React.FC<MovieListProps> = ({ moviesStore }) => {
     }
   }, [moviesStore.movies]);
 
+  useEffect(() => {
+    moviesStore.resetSelectedMovie();
+  }, []);
+
   return (
     <div className={'search-page-container'}>
       <Form getMoviesBySearchTerm={getMoviesBySearchTerm} moviesStore={moviesStore} inputValue={queryText} />
