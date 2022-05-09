@@ -14,7 +14,7 @@ type FormProps = {
 
 const Form: React.FC<FormProps> = ({ getMoviesBySearchTerm, moviesStore, inputValue }) => {
   const [searchTerm, setSearchTerm] = useState<string>(inputValue || '');
-  const isButtonDisabled = !isValueValid(searchTerm) && !moviesStore.isFetching;
+  const isButtonDisabled = !isValueValid(searchTerm) || moviesStore.isFetching;
   const disabledClass: string = isButtonDisabled ? DISABLED : '';
   const isMoviesInStore: boolean = !!moviesStore.movies.length;
   const formAnimtaionClass: string = isMoviesInStore ? FORM_MOVE_UP : FORM_MOVE_DOWN;

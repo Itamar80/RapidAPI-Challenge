@@ -3,9 +3,8 @@ import './nav-bar.scss';
 import BackIcon from '../../../assets/arrow.png';
 import RapidApiLogo from '../../../assets/rapidAPI.svg';
 import { useNavigate } from 'react-router-dom';
-type NavBarProps = {};
 
-export const NavBar: React.FC<NavBarProps> = (props) => {
+export const NavBar: React.FC = () => {
   const navigate = useNavigate();
 
   return (

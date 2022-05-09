@@ -10,9 +10,8 @@ type MoviesListProps = {
   isFetching: boolean;
 };
 
-export const MoviesList: React.FC<MoviesListProps> = (props) => {
+export const MoviesList: React.FC<MoviesListProps> = ({ movies, isFetching }) => {
   const navigate = useNavigate();
-  const { movies, isFetching } = props;
   const goToMovieDetails = (id: string): void => {
     navigate('/' + id, { state: id });
   };
