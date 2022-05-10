@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import './movie-details.scss';
 import { MoviesStoreImp } from '../../store/MovieStore';
 import { observer } from 'mobx-react';
-import { Loader } from '../../components/Loader/Loader';
 import { isValueValid } from '../../helpers/utils';
 import { NavBar } from '../../components/NavBar/NavBar';
 import { MovieInfo } from '../../components/MovieInfo/MovieInfo';
@@ -23,7 +22,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ moviesStore }) => {
     <div className={'movie-details-container'}>
       <NavBar />
       <div className={`error`}>{errorMessage}</div>
-      {selectedMovie ? <MovieInfo movie={selectedMovie} /> : <Loader />}
+      {selectedMovie && <MovieInfo movie={selectedMovie} />}
     </div>
   );
 };
